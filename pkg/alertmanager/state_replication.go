@@ -292,7 +292,7 @@ func (s *state) running(ctx context.Context) error {
 		case p := <-s.msgc:
 			// If the replication factor is <= 1, we don't need to replicate any state anywhere else.
 			if s.replicationFactor <= 1 {
-				return nil
+				continue
 			}
 
 			s.stateReplicationTotal.WithLabelValues(p.Key).Inc()
